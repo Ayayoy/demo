@@ -10,7 +10,7 @@ const fs = require("fs"); // file system
 // CREATE BOOK [ADMIN]
 router.post(
     "/create",
-    // admin,
+     
     upload.single("image"),
     body("title")
       .isString()
@@ -83,7 +83,6 @@ router.post(
 // UPDATE BOOK [ADMIN]
 router.put(
     "/:id", // params
-    // admin,
     upload.single("image"),
     body("title"),
     body("author"),
@@ -155,7 +154,7 @@ router.put(
 
 // DELETE BOOK [ADMIN]
 router.delete("/:id",
-//  admin,
+  
   async (req, res) => {
         try {
             // 1- CHECK IF BOOK EXISTS OR NOT
@@ -183,7 +182,7 @@ router.delete("/:id",
 
 //FILTER BOOKS BY ISBN
 router.get("/filter",
-//  admin,
+  
   async (req, res) => {
   try {
     const query = util.promisify(conn.query).bind(conn);
@@ -200,7 +199,7 @@ router.get("/filter",
 
 // SHOW IN-ACTIVE USERS
 router.get("/users",
-//  admin,
+  
   async (req, res) => {
   try {
       const query = util.promisify(conn.query).bind(conn);
@@ -216,7 +215,7 @@ router.get("/users",
 // MANAGE USER ACCOUNTS [ADMIN ONLY]
 // 1-APPROVE
 router.put("/users/:id",
-//  admin,
+  
   async (req, res) => {
     try {
         const query = util.promisify(conn.query).bind(conn);
@@ -235,7 +234,7 @@ await query("UPDATE users SET status = 1, return_date = ? WHERE id = ?", [req.pa
 
 //2-REJECT
 router.delete("/users/:id",
-//  admin,
+  
   async (req, res) => {
   try {
       // 1- CHECK IF BOOK EXISTS OR NOT
@@ -306,7 +305,7 @@ body("return_date").isDate(),
 
 //2-REJECT
 router.delete("/borrow/:id/reject",
-//  admin,
+  
   async (req, res) => {
   try {
       // 1- CHECK IF REQUEST EXISTS OR NOT
@@ -357,7 +356,7 @@ router.get("", async (req, res) => {
 
 //SEND BORROW REQUEST [ONLY USER]
 router.post("/borrow/id:/:user_id",
-  // authorized,
+   
   async (req, res) => {
     try {
       // 1- VALIDATION REQUEST [manual, express validation]
